@@ -1,4 +1,0 @@
-uni	snvLoc	AAchange	psite	ploc	chr	chrl	NNchange
-Q96TA1	692	S/L	S	696	9	127507011	G/A
-P16144	1533	R/H	T	1530	17	75755740	G/A
-O15417	257	R/L	S	263	7	5389054	C/A
