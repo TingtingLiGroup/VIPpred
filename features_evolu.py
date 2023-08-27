@@ -41,6 +41,9 @@ def get_ptmage_pubmed(df):
 				df.loc[i,'feature_pubmed_LT_LIT']=int(cache.LT_LIT.iloc[0])
 			else:
 				df.loc[i,'feature_pubmed_LT_LIT']=cache.LT_LIT.iloc[0]
+		else:
+			df.loc[i,'feature_pubmed_MS_LIT']=np.nan
+			df.loc[i,'feature_pubmed_LT_LIT']=np.nan
 		
 		cache=age[(age.acc==uni)&(age.position==ploc)]
 		if cache.shape[0]>0:

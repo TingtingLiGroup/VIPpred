@@ -63,3 +63,33 @@ def get_psite_existed(df):
 		df.loc[i,'feature_psite_existed']=tC
 		
 	return df
+
+
+## Obtain multiple Score using dbNSFP4.3a
+def get_vep(df, vepPath):
+    df['dnnsfp'] = df.chr.astype(str) + '_' + df.chrl.astype(
+        str
+    ) + '_' + df.NNchange + '_' + df.AAchange  #+ '_' + df.snvLoc.astype(str)
+
+    dnnsfp = pd.read_csv(vepPath, sep='\t')
+    dnnsfp['dnnsfp'] = dnnsfp['#chr'].astype(str) + '_' + dnnsfp[
+        'pos(1-based)'].astype(str) + '_' + dnnsfp.ref.astype(
+            str) + '/' + dnnsfp.alt.astype(str) + '_' + dnnsfp.aaref.astype(
+                str) + '/' + dnnsfp.aaalt.astype(
+                    str)  # + '_' + dnnsfp.aapos.astype(str)
+
+    # dnnsfp['Uniprot'] = dnnsfp.Uniprot_acc.str.split('-', expand=True)[0]
+    
+    dnnsfp = dnnsfp[[
+        'phyloP17way_primate', 'phyloP17way_primate_rankscore',
+        'BayesDel_addAF_score', 'BayesDel_addAF_rankscore',
+        'integrated_fitCons_score', 'integrated_fitCons_rankscore',
+        'GERP++_RS', 'GERP++_RS_rankscore', 'dnnsfp'
+    ]].drop_duplicates().replace('.',np.nan)
+    
+    df = pd.merge(df,
+                  dnnsfp,
+                  left_on=['dnnsfp'],
+                  right_on=['dnnsfp'],
+                  how='left')
+    return df
