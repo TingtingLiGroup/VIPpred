@@ -12,7 +12,7 @@ Should you lack any of the packages, install the corresponding package with
 pip install XXX
 ```
 
-In addition to direct download from GitHub, we have also uploaded VIPpred on Google Drive, and the link is:
+In addition to downloading from GitHub directly, you may also download from Google Drive where we also uploaded VIPpred, and the link is:
 ```
 https://drive.google.com/drive/folders/1FmEqDbwBL_hGjY89AZuyhx-e6xYierOT?usp=sharing
 ```
